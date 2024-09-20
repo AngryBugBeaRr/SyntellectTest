@@ -1,0 +1,42 @@
+.container {
+    overflow: scroll;
+    overflow-x: hidden;
+    max-height: 300px;
+    scrollbar-width: none;
+    position: absolute;
+    z-index: 2;
+    background-color: white;
+}
+
+.tipsContainer {
+    display: flex;
+    width: 340px;
+    justify-content: space-between;
+    align-items: center;
+    border: 0.5px solid black;
+    cursor: pointer;
+    padding: 0 10px;
+}
+
+.tipsContainer:first-child {
+    margin-top: 10px;
+    border-radius: 8px 8px 0 0;
+}
+
+.tipsContainer:last-child {
+    border-radius: 0 0 8px 8px;
+}
+
+.tipsContainer:hover {
+    background-color: #C5C5C5;
+}
+
+.imageFlag {
+    width: 50px;
+    height: 30px;
+}
+
+.tips {
+    display: flex;
+    flex: 1;
+}
