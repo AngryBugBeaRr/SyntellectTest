@@ -25,16 +25,19 @@ export class AutoCompleteControlVm {
         this.isSearchEnd = isSearchEnd;
     };
 
-    getCountry = (title: string): void => {
+    getCountry = debounce((title: string): void => {
         getCountryByName(title)
-            .then((result: CountryInfo[]) => this.setTips(result.slice(0, this.maxTips)));
-    }
+            .then((result: CountryInfo[]) => {
+                this.setTips(result.slice(0, this.maxTips));
+                this.setIsSearchEnd(false);
+            });
+    }, 250);
 
     @action onControlTextChange = (e: ChangeEvent<HTMLInputElement>) => {
         let searchString = e.target.value;
         this.setControlText(searchString);
-        this.setIsSearchEnd(false);
-        debounce(this.getCountry(searchString), 10);
+        this.setIsSearchEnd(true);
+        this.getCountry(searchString);
     }
 
     @action onClickTip = (item: CountryInfo) => {
